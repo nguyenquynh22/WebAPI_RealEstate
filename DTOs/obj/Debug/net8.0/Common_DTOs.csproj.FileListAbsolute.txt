@@ -1,0 +1,11 @@
+F:\WebAPI_RealEstate\WebAPI_RealEstate\DTOs\bin\Debug\net8.0\Common_DTOs.deps.json
+F:\WebAPI_RealEstate\WebAPI_RealEstate\DTOs\bin\Debug\net8.0\Common_DTOs.dll
+F:\WebAPI_RealEstate\WebAPI_RealEstate\DTOs\bin\Debug\net8.0\Common_DTOs.pdb
+F:\WebAPI_RealEstate\WebAPI_RealEstate\DTOs\obj\Debug\net8.0\Common_DTOs.GeneratedMSBuildEditorConfig.editorconfig
+F:\WebAPI_RealEstate\WebAPI_RealEstate\DTOs\obj\Debug\net8.0\Common_DTOs.AssemblyInfoInputs.cache
+F:\WebAPI_RealEstate\WebAPI_RealEstate\DTOs\obj\Debug\net8.0\Common_DTOs.AssemblyInfo.cs
+F:\WebAPI_RealEstate\WebAPI_RealEstate\DTOs\obj\Debug\net8.0\Common_DTOs.csproj.CoreCompileInputs.cache
+F:\WebAPI_RealEstate\WebAPI_RealEstate\DTOs\obj\Debug\net8.0\Common_DTOs.dll
+F:\WebAPI_RealEstate\WebAPI_RealEstate\DTOs\obj\Debug\net8.0\refint\Common_DTOs.dll
+F:\WebAPI_RealEstate\WebAPI_RealEstate\DTOs\obj\Debug\net8.0\Common_DTOs.pdb
+F:\WebAPI_RealEstate\WebAPI_RealEstate\DTOs\obj\Debug\net8.0\ref\Common_DTOs.dll

@@ -1,0 +1,15 @@
+F:\WebAPI_RealEstate\WebAPI_RealEstate\DAL\bin\Debug\net8.0\Common_DAL.deps.json
+F:\WebAPI_RealEstate\WebAPI_RealEstate\DAL\bin\Debug\net8.0\Common_DAL.dll
+F:\WebAPI_RealEstate\WebAPI_RealEstate\DAL\bin\Debug\net8.0\Common_DAL.pdb
+F:\WebAPI_RealEstate\WebAPI_RealEstate\DAL\bin\Debug\net8.0\Common_DTOs.dll
+F:\WebAPI_RealEstate\WebAPI_RealEstate\DAL\bin\Debug\net8.0\Common_DTOs.pdb
+F:\WebAPI_RealEstate\WebAPI_RealEstate\DAL\obj\Debug\net8.0\Common_DAL.csproj.AssemblyReference.cache
+F:\WebAPI_RealEstate\WebAPI_RealEstate\DAL\obj\Debug\net8.0\Common_DAL.GeneratedMSBuildEditorConfig.editorconfig
+F:\WebAPI_RealEstate\WebAPI_RealEstate\DAL\obj\Debug\net8.0\Common_DAL.AssemblyInfoInputs.cache
+F:\WebAPI_RealEstate\WebAPI_RealEstate\DAL\obj\Debug\net8.0\Common_DAL.AssemblyInfo.cs
+F:\WebAPI_RealEstate\WebAPI_RealEstate\DAL\obj\Debug\net8.0\Common_DAL.csproj.CoreCompileInputs.cache
+F:\WebAPI_RealEstate\WebAPI_RealEstate\DAL\obj\Debug\net8.0\Common_DAL.csproj.Up2Date
+F:\WebAPI_RealEstate\WebAPI_RealEstate\DAL\obj\Debug\net8.0\Common_DAL.dll
+F:\WebAPI_RealEstate\WebAPI_RealEstate\DAL\obj\Debug\net8.0\refint\Common_DAL.dll
+F:\WebAPI_RealEstate\WebAPI_RealEstate\DAL\obj\Debug\net8.0\Common_DAL.pdb
+F:\WebAPI_RealEstate\WebAPI_RealEstate\DAL\obj\Debug\net8.0\ref\Common_DAL.dll
