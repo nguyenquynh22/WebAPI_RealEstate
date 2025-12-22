@@ -31,7 +31,8 @@ namespace AdminApi.Controllers
             {
                 return Unauthorized(new { Message = "Tên đăng nhập hoặc mật khẩu không đúng" });
             }
-            var userEntity =await _userRepository.GetUserByUsernameAsync(request.UserName);
+            var userEntity =await _userRepository.GetUserByIdAsync(userResponseDto.UserId);
+
             if (userEntity == null)
             {
                 return Unauthorized(new { Message = "Lỗi hệ thống: Không tìm thấy hồ sơ người dùng." });
@@ -50,6 +51,7 @@ namespace AdminApi.Controllers
         {
             try
             {
+                request.Role = "Customer";
                 var newUser = await _userService.RegisterUserAsync(request);
                 return CreatedAtAction(nameof(Login), new { Data = newUser });
             }

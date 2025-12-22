@@ -36,13 +36,20 @@ namespace Common_BLL.Services
                 throw new Exception("Username or Email already exists.");
             }
 
-            // 2. Ánh xạ và Hash mật khẩu
-            var userEntity = _mapper.Map<User>(request);
-            userEntity.PasswordHash = BCrypt.Net.BCrypt.HashPassword(request.Password);
-            userEntity.Role = "Customer"; // Thiết lập Role mặc định
-            userEntity.KycStatus = "Pending"; // Thiết lập trạng thái KYC mặc định
+            string finalRole = string.IsNullOrWhiteSpace(request.Role) ? "Customer" : request.Role;
 
-            // 3. Gọi DAL để tạo
+            // 3. Ánh xạ và Hash mật khẩu
+            // Ánh xạ các trường từ DTO (hiện tại chưa có Role trong DTO cũ)
+            var userEntity = _mapper.Map<User>(request);
+
+            userEntity.PasswordHash = BCrypt.Net.BCrypt.HashPassword(request.Password);
+
+            // SỬA: Thiết lập Role bằng giá trị finalRole đã tính toán
+            userEntity.Role = finalRole;
+
+            userEntity.KycStatus = "Pending"; // Giữ trạng thái KYC mặc định
+
+            // 4. Gọi DAL để tạo
             var newUser = await _userRepository.CreateUserAsync(userEntity);
 
             return _mapper.Map<UserResponseDto>(newUser);

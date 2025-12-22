@@ -54,6 +54,35 @@
             "description": "OK"
           }
         }
+      },
+      "post": {
+        "tags": [
+          "AdminUsers"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserCreateRequestDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserCreateRequestDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserCreateRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
       }
     },
     "/api/admin/users/{id}": {
@@ -254,21 +283,30 @@
         "additionalProperties": false
       },
       "UserCreateRequestDto": {
+        "required": [
+          "email",
+          "password",
+          "userName"
+        ],
         "type": "object",
         "properties": {
           "userName": {
-            "type": "string",
-            "nullable": true
+            "minLength": 1,
+            "type": "string"
           },
           "email": {
-            "type": "string",
-            "nullable": true
+            "minLength": 1,
+            "type": "string"
           },
           "password": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "phone": {
             "type": "string",
             "nullable": true
           },
-          "phone": {
+          "role": {
             "type": "string",
             "nullable": true
           }
@@ -298,6 +336,10 @@
             "type": "string",
             "nullable": true
           },
+          "role": {
+            "type": "string",
+            "nullable": true
+          },
           "avatarUrl": {
             "type": "string",
             "nullable": true
@@ -320,12 +362,19 @@
         "description": "JWT Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\"",
         "name": "Authorization",
         "in": "header"
+      },
+      "ApiKey": {
+        "type": "apiKey",
+        "description": "API Key required for accessing secure endpoints (e.g., X-API-KEY)",
+        "name": "X-API-KEY",
+        "in": "header"
       }
     }
   },
   "security": [
     {
-      "Bearer": [ ]
+      "Bearer": [ ],
+      "ApiKey": [ ]
     }
   ]
 }

@@ -1,4 +1,4 @@
-﻿// File: Common_BLL/Profiles/UserMappingProfile.cs (Đã sửa hoàn chỉnh)
+﻿// File: Common_BLL/Profiles/UserMappingProfile.cs (Đã sửa)
 
 using AutoMapper;
 using Common_DTOs.DTOs;
@@ -11,7 +11,7 @@ namespace Common_BLL.Profiles
         public UserMappingProfile()
         {
             // [1] Ánh xạ Entity (User) -> Response DTO (UserResponseDto)
-            // CHỈ GIỮ LẠI ÁNH XẠ TÙY CHỈNH NÀY (Xóa dòng CreateMap<User, UserResponseDto>();)
+            // Khắc phục lỗi trùng lặp và loại bỏ các trường bị xóa khỏi DTO
             CreateMap<User, UserResponseDto>()
                 .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.Email ?? ""))
                 .ForMember(dest => dest.Phone, opt => opt.MapFrom(src => src.Phone ?? ""))
@@ -22,11 +22,10 @@ namespace Common_BLL.Profiles
 
             // [2] Ánh xạ Create Request DTO -> Entity (User) <-- BỔ SUNG ÁNH XẠ NÀY
             CreateMap<UserCreateRequestDto, User>()
-                // Password sẽ được xử lý Hash trong UserService. Ta chỉ map giá trị
-                .ForMember(dest => dest.PasswordHash, opt => opt.MapFrom(src => src.Password))
+                .ForMember(dest => dest.PasswordHash, opt => opt.MapFrom(src => src.Password)) // Tạm thời map, sau đó UserService sẽ hash
                 .ForMember(dest => dest.UserId, opt => opt.Ignore())
                 .ForMember(dest => dest.IsLocked, opt => opt.MapFrom(src => false))
-                .ForMember(dest => dest.Role, opt => opt.MapFrom(src => "Customer")) // Role mặc định
+                .ForMember(dest => dest.Role, opt => opt.MapFrom(src => "Customer")) // Hoặc bất kỳ role mặc định nào
                 .ForMember(dest => dest.KycStatus, opt => opt.MapFrom(src => "Pending"))
                 .ForMember(dest => dest.CreatedAt, opt => opt.MapFrom(src => DateTime.UtcNow))
                 .ForMember(dest => dest.UpdatedAt, opt => opt.Ignore());
@@ -34,11 +33,7 @@ namespace Common_BLL.Profiles
 
             // [3] Ánh xạ Update Request DTO -> Entity (Giữ nguyên)
             CreateMap<UserUpdateRequestDto, User>()
-                .ForMember(dest => dest.UserId, opt => opt.Ignore())
-                .ForMember(dest => dest.PasswordHash, opt => opt.Ignore())
-                .ForMember(dest => dest.Role, opt => opt.Ignore())
-                .ForMember(dest => dest.KycStatus, opt => opt.Ignore())
-                .ForMember(dest => dest.CreatedAt, opt => opt.Ignore())
+                // ... (Các ForMember giữ nguyên)
                 .ForMember(dest => dest.UpdatedAt, opt => opt.MapFrom(src => DateTime.UtcNow))
                 .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
         }

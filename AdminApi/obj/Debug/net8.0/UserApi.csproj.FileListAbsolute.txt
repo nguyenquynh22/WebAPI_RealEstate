@@ -89,3 +89,4 @@ F:\WebAPI_RealEstate\WebAPI_RealEstate\AdminApi\obj\Debug\net8.0\refint\UserApi.
 F:\WebAPI_RealEstate\WebAPI_RealEstate\AdminApi\obj\Debug\net8.0\UserApi.pdb
 F:\WebAPI_RealEstate\WebAPI_RealEstate\AdminApi\obj\Debug\net8.0\UserApi.genruntimeconfig.cache
 F:\WebAPI_RealEstate\WebAPI_RealEstate\AdminApi\obj\Debug\net8.0\ref\UserApi.dll
+F:\WebAPI_RealEstate\WebAPI_RealEstate\AdminApi\obj\Debug\net8.0\UserApi.sourcelink.json

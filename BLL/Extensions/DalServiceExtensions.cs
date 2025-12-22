@@ -12,7 +12,6 @@ namespace Common_BLL.Extensions
 {
     public static class DalServiceExtensions
     {
-        // Hàm này đóng gói toàn bộ logic đăng ký DAL
         public static IServiceCollection AddDalServices(this IServiceCollection services, IConfiguration config)
         {
             // 1. Lấy chuỗi kết nối

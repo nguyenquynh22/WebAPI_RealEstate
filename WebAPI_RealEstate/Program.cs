@@ -1,7 +1,7 @@
-﻿using AdminApi.Extensions; // Cần thiết để gọi các Extension Methods
+﻿using AdminApi;
+using AdminApi.Extensions; 
 using Common_BLL.Interfaces;
 using Common_BLL.Services;
-// Thêm using Microsoft.AspNetCore.Builder; // Nếu chưa có
 
 var builder = WebApplication.CreateBuilder(args);
 var config = builder.Configuration;
@@ -24,13 +24,13 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
-// 1. Xác thực (Đọc token, tạo principal)
-app.UseAuthentication();
+// 1. Xác thực JWT (Đọc token, tạo principal)
+app.UseAuthentication(); 
 
 // 2. Ủy quyền (Kiểm tra role, policy)
-app.UseAuthorization();
+app.UseAuthorization(); 
+
+app.UseApiKeyMiddleware(); 
 
 app.MapControllers();
-
 app.Run();

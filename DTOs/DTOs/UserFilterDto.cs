@@ -8,11 +8,10 @@ namespace Common_DTOs.DTOs
 {
     public class UserFilterDto
     {
-        public string Keyword { get; set; } // Tìm kiếm theo UserName, Email, Phone
-        public string Role { get; set; } // Lọc theo Role ('admin', 'agent', 'customer')
-        public string KycStatus { get; set; } // Lọc theo trạng thái KYC
+        public string Keyword { get; set; } 
+        public string Role { get; set; } 
+        public string KycStatus { get; set; } 
 
-        // Phân trang
         public int PageIndex { get; set; } = 1;
         public int PageSize { get; set; } = 10;
     }

@@ -76,61 +76,37 @@ namespace Common_DAL.Repositories
             return null;
         }
 
-        // [3. READ ALL (Phân trang và Tìm kiếm) - GIỮ LẠI LOGIC HIỆU QUẢ CỦA BẠN]
+        // [3. READ ALL (Phân trang và Tìm kiếm)]
         public async Task<(List<User> Users, int TotalCount)> GetAllUsersAsync(UserFilterDto filter)
         {
             var users = new List<User>();
             int totalCount = 0;
-
-            // Xây dựng SQL động cho tìm kiếm và lọc
-            var whereClause = "1=1";
-            var parameters = new List<SqlParameter>();
-
-            if (!string.IsNullOrEmpty(filter.Role))
+            var parameters = new List<SqlParameter>
             {
-                whereClause += " AND Role = @Role";
-                parameters.Add(new SqlParameter("@Role", filter.Role));
-            }
-
-            if (!string.IsNullOrEmpty(filter.Keyword))
-            {
-                whereClause += " AND (UserName LIKE @Keyword OR Email LIKE @Keyword OR Phone LIKE @Keyword)";
-                parameters.Add(new SqlParameter("@Keyword", $"%{filter.Keyword}%"));
-            }
-
-            // SQL thực hiện 2 tác vụ: Đếm tổng số và Lấy dữ liệu phân trang
-            string sql = $@"
-                SELECT COUNT(UserId) FROM Users WHERE {whereClause};
-                
-                SELECT * FROM Users
-                WHERE {whereClause}
-                ORDER BY CreatedAt DESC
-                OFFSET @Offset ROWS 
-                FETCH NEXT @PageSize ROWS ONLY;";
-
-            parameters.Add(new SqlParameter("@PageSize", filter.PageSize));
-            parameters.Add(new SqlParameter("@Offset", filter.PageSize * (filter.PageIndex - 1)));
+                new SqlParameter("@Keyword", (object?)filter.Keyword ?? DBNull.Value),
+                new SqlParameter("@RoleFilter", (object?)filter.Role ?? DBNull.Value),
+                new SqlParameter("@PageIndex", filter.PageIndex),
+                new SqlParameter("@PageSize", filter.PageSize)
+            };
 
             // Thực thi 2 câu lệnh với một Reader (Duy trì logic tự mở/đóng kết nối của bạn cho Multi-query)
             using (var connection = _sqlHelper.GetConnection())
             {
                 await connection.OpenAsync();
-                using (var command = new SqlCommand(sql, connection))
+                using (var command = new SqlCommand("sp_user_search", connection))
                 {
+                    command.CommandType = CommandType.StoredProcedure;
                     command.Parameters.AddRange(parameters.ToArray());
                     using (var reader = await command.ExecuteReaderAsync())
                     {
-                        // 1. Đọc TotalCount
-                        if (await reader.ReadAsync())
-                        {
-                            totalCount = reader.GetInt32(0);
-                        }
-
-                        // 2. Chuyển sang Result Set tiếp theo và đọc Users
-                        await reader.NextResultAsync();
                         while (await reader.ReadAsync())
                         {
-                            users.Add(MapUser(reader));
+                            var user = MapUser(reader);
+                            if (reader["TotalCount"] != DBNull.Value)
+                            {
+                                totalCount = reader.GetInt32("TotalCount");
+                            }
+                            users.Add(user);
                         }
                     }
                 }

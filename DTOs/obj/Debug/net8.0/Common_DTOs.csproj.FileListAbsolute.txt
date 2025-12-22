@@ -9,3 +9,4 @@ F:\WebAPI_RealEstate\WebAPI_RealEstate\DTOs\obj\Debug\net8.0\Common_DTOs.dll
 F:\WebAPI_RealEstate\WebAPI_RealEstate\DTOs\obj\Debug\net8.0\refint\Common_DTOs.dll
 F:\WebAPI_RealEstate\WebAPI_RealEstate\DTOs\obj\Debug\net8.0\Common_DTOs.pdb
 F:\WebAPI_RealEstate\WebAPI_RealEstate\DTOs\obj\Debug\net8.0\ref\Common_DTOs.dll
+F:\WebAPI_RealEstate\WebAPI_RealEstate\DTOs\obj\Debug\net8.0\Common_DTOs.sourcelink.json

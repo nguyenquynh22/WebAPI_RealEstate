@@ -15,3 +15,4 @@ F:\WebAPI_RealEstate\WebAPI_RealEstate\BLL\obj\Debug\net8.0\Common_BLL.dll
 F:\WebAPI_RealEstate\WebAPI_RealEstate\BLL\obj\Debug\net8.0\refint\Common_BLL.dll
 F:\WebAPI_RealEstate\WebAPI_RealEstate\BLL\obj\Debug\net8.0\Common_BLL.pdb
 F:\WebAPI_RealEstate\WebAPI_RealEstate\BLL\obj\Debug\net8.0\ref\Common_BLL.dll
+F:\WebAPI_RealEstate\WebAPI_RealEstate\BLL\obj\Debug\net8.0\Common_BLL.sourcelink.json

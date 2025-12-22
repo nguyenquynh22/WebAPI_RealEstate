@@ -37,6 +37,22 @@
   },
   {
     "ContainingType": "AdminUsersController",
+    "Method": "CreateUser",
+    "RelativePath": "api/admin/users",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "Common_DTOs.DTOs.UserCreateRequestDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AdminUsersController",
     "Method": "GetUserById",
     "RelativePath": "api/admin/users/{id}",
     "HttpMethod": "GET",

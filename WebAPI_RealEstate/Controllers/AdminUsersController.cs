@@ -1,4 +1,4 @@
-using Common_BLL.Interfaces;
+﻿using Common_BLL.Interfaces;
 using Common_DTOs.DTOs;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -35,7 +35,7 @@ public class AdminUsersController : ControllerBase
         return Ok(user);
     }
 
-    // PUT: api/admin/users/{id} (Admin c?p nh?t profile ng??i kh�c)
+    // PUT: api/admin/users/{id} (Admin c?p nh?t profile ng??i khác)
     [HttpPut("{id}")]
     public async Task<IActionResult> UpdateUser(Guid id, [FromBody] UserUpdateRequestDto request)
     {
@@ -50,7 +50,7 @@ public class AdminUsersController : ControllerBase
         }
     }
 
-    // PATCH: api/admin/users/{id}/kyc (Admin c?p nh?t tr?ng th�i KYC)
+    // PATCH: api/admin/users/{id}/kyc (Admin c?p nh?t tr?ng thái KYC)
     [HttpPatch("{id}/kyc")]
     public async Task<IActionResult> UpdateKyc(Guid id, [FromQuery] string status)
     {
@@ -75,5 +75,28 @@ public class AdminUsersController : ControllerBase
             return NotFound();
         }
         return NoContent();
+    }
+    [HttpPost]
+    public async Task<IActionResult> CreateUser([FromBody] UserCreateRequestDto request)
+    {
+        try
+        {
+            // LOGIC MỚI: Nếu Role bị bỏ trống (null), mặc định là "Customer"
+            if (string.IsNullOrWhiteSpace(request.Role))
+            {
+                request.Role = "Customer";
+            }
+            // Admin API cho phép tạo bất kỳ Role nào được truyền vào
+
+            var newUser = await _userService.RegisterUserAsync(request);
+
+            // Trả về 201 Created và gọi phương thức GetUserById
+            return CreatedAtAction(nameof(GetUserById), new { id = newUser.UserId }, newUser);
+        }
+        catch (Exception ex)
+        {
+            // Xử lý lỗi trùng lặp từ UserService
+            return BadRequest(new { Message = ex.Message });
+        }
     }
 }
