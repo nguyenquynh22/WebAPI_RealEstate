@@ -1,4 +1,10 @@
-﻿namespace AdminApi
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace Common_Shared.Middlewares
 {
     public class ApiKeyMiddleware
     {
@@ -9,45 +15,50 @@
         {
             _next = next;
         }
+
         public async Task InvokeAsync(HttpContext context, IConfiguration configuration)
         {
-            var excludedPaths = new[]
-            {
-                "/api/auth/login", // Đã chuyển sang chữ thường
-                "/api/auth/register" // Đã chuyển sang chữ thường
+            var currentPath = context.Request.Path.Value?.ToLowerInvariant() ?? "";
+
+            var excludedPaths = new[] {
+                "/api/auth/login",
+                "/api/auth/register",
+                "/swagger",          
+                "/index.html",       
+                "/favicon.ico",
+                "/v1/swagger.json"   
             };
 
-            // Lấy đường dẫn hiện tại và chuyển sang chữ thường để so sánh
-            var currentPath = context.Request.Path.Value?.ToLowerInvariant();
-
-            // 2. Kiểm tra nếu đường dẫn nằm trong danh sách loại trừ
-            // currentPath (ví dụ: "/api/auth/register") so sánh với excludedPaths (ví dụ: "/api/auth/register")
-            if (currentPath != null && excludedPaths.Contains(currentPath))
+            // Kiểm tra nếu đường dẫn hiện tại nằm trong danh sách loại trừ
+            if (excludedPaths.Any(path => currentPath.Contains(path)))
             {
-                await _next(context); // Bỏ qua kiểm tra API Key và chuyển sang bước tiếp theo
+                await _next(context);
                 return;
             }
-            // --- LOGIC KIỂM TRA API KEY CHỈ CHẠY CHO CÁC PATH KHÁC ---
 
+            // Kiểm tra sự tồn tại của API Key trong Header
             if (!context.Request.Headers.TryGetValue(ApiKeyName, out var extractedApiKey))
             {
                 context.Response.StatusCode = 401;
+                context.Response.ContentType = "text/plain; charset=utf-8";
                 await context.Response.WriteAsync("Bạn không có quyền truy cập! (Thiếu API Key)");
                 return;
             }
 
+            // So sánh với Key trong appsettings.json
             var apiKey = configuration["AppSettings:MyApiKey"];
-            if (!apiKey.Equals(extractedApiKey))
+            if (string.IsNullOrEmpty(apiKey) || !apiKey.Equals(extractedApiKey.ToString()))
             {
                 context.Response.StatusCode = 403;
+                context.Response.ContentType = "text/plain; charset=utf-8";
                 await context.Response.WriteAsync("Key của bạn không đúng!");
                 return;
             }
 
             await _next(context);
         }
-    
     }
+
     public static class ApiKeyMiddlewareExtensions
     {
         public static IApplicationBuilder UseApiKeyMiddleware(this IApplicationBuilder builder)

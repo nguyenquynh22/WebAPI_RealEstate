@@ -5,6 +5,180 @@
     "version": "v1"
   },
   "paths": {
+    "/api/admin/AdminProject": {
+      "get": {
+        "tags": [
+          "AdminProject"
+        ],
+        "parameters": [
+          {
+            "name": "searchItem",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 1
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 10
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "AdminProject"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Common_DTOs.DTOs.ProjectCreateRequestDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Common_DTOs.DTOs.ProjectCreateRequestDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Common_DTOs.DTOs.ProjectCreateRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/admin/AdminProject/{projectId}": {
+      "put": {
+        "tags": [
+          "AdminProject"
+        ],
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Common_DTOs.DTOs.ProjectUpdateRequestDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Common_DTOs.DTOs.ProjectUpdateRequestDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Common_DTOs.DTOs.ProjectUpdateRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "AdminProject"
+        ],
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/admin/AdminProject/bulk-delete": {
+      "delete": {
+        "tags": [
+          "AdminProject"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/admin/users": {
       "get": {
         "tags": [
@@ -63,17 +237,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UserCreateRequestDto"
+                "$ref": "#/components/schemas/Common_DTOs.DTOs.UserCreateRequestDto"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/UserCreateRequestDto"
+                "$ref": "#/components/schemas/Common_DTOs.DTOs.UserCreateRequestDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/UserCreateRequestDto"
+                "$ref": "#/components/schemas/Common_DTOs.DTOs.UserCreateRequestDto"
               }
             }
           }
@@ -90,6 +264,7 @@
         "tags": [
           "AdminUsers"
         ],
+        "operationId": "GetUserById",
         "parameters": [
           {
             "name": "id",
@@ -126,17 +301,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UserUpdateRequestDto"
+                "$ref": "#/components/schemas/Common_DTOs.DTOs.UserUpdateRequestDto"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/UserUpdateRequestDto"
+                "$ref": "#/components/schemas/Common_DTOs.DTOs.UserUpdateRequestDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/UserUpdateRequestDto"
+                "$ref": "#/components/schemas/Common_DTOs.DTOs.UserUpdateRequestDto"
               }
             }
           }
@@ -208,17 +383,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/LoginRequestDto"
+                "$ref": "#/components/schemas/Common_DTOs.DTOs.LoginRequestDto"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/LoginRequestDto"
+                "$ref": "#/components/schemas/Common_DTOs.DTOs.LoginRequestDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/LoginRequestDto"
+                "$ref": "#/components/schemas/Common_DTOs.DTOs.LoginRequestDto"
               }
             }
           }
@@ -239,17 +414,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UserCreateRequestDto"
+                "$ref": "#/components/schemas/Common_DTOs.DTOs.UserCreateRequestDto"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/UserCreateRequestDto"
+                "$ref": "#/components/schemas/Common_DTOs.DTOs.UserCreateRequestDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/UserCreateRequestDto"
+                "$ref": "#/components/schemas/Common_DTOs.DTOs.UserCreateRequestDto"
               }
             }
           }
@@ -264,7 +439,7 @@
   },
   "components": {
     "schemas": {
-      "LoginRequestDto": {
+      "Common_DTOs.DTOs.LoginRequestDto": {
         "required": [
           "password",
           "userName"
@@ -282,7 +457,55 @@
         },
         "additionalProperties": false
       },
-      "UserCreateRequestDto": {
+      "Common_DTOs.DTOs.ProjectCreateRequestDto": {
+        "type": "object",
+        "properties": {
+          "projectName": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "location": {
+            "type": "string",
+            "nullable": true
+          },
+          "developer": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Common_DTOs.DTOs.ProjectUpdateRequestDto": {
+        "type": "object",
+        "properties": {
+          "projectId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "projectName": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "location": {
+            "type": "string",
+            "nullable": true
+          },
+          "developer": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Common_DTOs.DTOs.UserCreateRequestDto": {
         "required": [
           "email",
           "password",
@@ -313,7 +536,7 @@
         },
         "additionalProperties": false
       },
-      "UserUpdateRequestDto": {
+      "Common_DTOs.DTOs.UserUpdateRequestDto": {
         "type": "object",
         "properties": {
           "userName": {
@@ -359,13 +582,13 @@
     "securitySchemes": {
       "Bearer": {
         "type": "apiKey",
-        "description": "JWT Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\"",
+        "description": "Nhập Token theo cú pháp: Bearer {token}",
         "name": "Authorization",
         "in": "header"
       },
       "ApiKey": {
         "type": "apiKey",
-        "description": "API Key required for accessing secure endpoints (e.g., X-API-KEY)",
+        "description": "Nhập API Key vào đây",
         "name": "X-API-KEY",
         "in": "header"
       }

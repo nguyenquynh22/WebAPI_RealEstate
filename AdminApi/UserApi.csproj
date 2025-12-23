@@ -7,13 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="16.0.0" />
+    <PackageReference Include="AutoMapper" Version="12.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\BLL\Common_BLL.csproj" />
+    <ProjectReference Include="..\Common_Shared\Common_Shared.csproj" />
     <ProjectReference Include="..\DTOs\Common_DTOs.csproj" />
   </ItemGroup>
 

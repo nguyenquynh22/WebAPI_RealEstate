@@ -8,7 +8,7 @@ namespace Common_DAL.Interfaces
 {
     public interface IUserRepository
     {
-        Task<User> GetUserByIdAsync(Guid userId);
+        Task<User?> GetUserByIdAsync(Guid userId);
         Task<User> GetUserByUsernameAsync(string userName); 
         Task<(List<User> Users, int TotalCount)> GetAllUsersAsync(UserFilterDto filter);
         Task<User> CreateUserAsync(User user);

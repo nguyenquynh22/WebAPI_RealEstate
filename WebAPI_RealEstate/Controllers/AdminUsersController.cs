@@ -24,7 +24,7 @@ public class AdminUsersController : ControllerBase
     }
 
     // GET: api/admin/users/{id}
-    [HttpGet("{id}")]
+    [HttpGet("{id}", Name = "GetUserById")]
     public async Task<IActionResult> GetUserById(Guid id)
     {
         var user = await _userService.GetUserByIdAsync(id);
@@ -91,7 +91,7 @@ public class AdminUsersController : ControllerBase
             var newUser = await _userService.RegisterUserAsync(request);
 
             // Trả về 201 Created và gọi phương thức GetUserById
-            return CreatedAtAction(nameof(GetUserById), new { id = newUser.UserId }, newUser);
+            return CreatedAtAction("GetUserById", new { id = newUser.UserId }, newUser);
         }
         catch (Exception ex)
         {

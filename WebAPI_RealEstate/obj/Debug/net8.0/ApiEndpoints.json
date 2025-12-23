@@ -1,5 +1,100 @@
 [
   {
+    "ContainingType": "AdminApi.Controllers.AdminProjectController",
+    "Method": "GetProjects",
+    "RelativePath": "api/admin/AdminProject",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "searchItem",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageNumber",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AdminApi.Controllers.AdminProjectController",
+    "Method": "CreateProject",
+    "RelativePath": "api/admin/AdminProject",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "Common_DTOs.DTOs.ProjectCreateRequestDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AdminApi.Controllers.AdminProjectController",
+    "Method": "UpdateProject",
+    "RelativePath": "api/admin/AdminProject/{projectId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "projectId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "request",
+        "Type": "Common_DTOs.DTOs.ProjectUpdateRequestDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AdminApi.Controllers.AdminProjectController",
+    "Method": "DeleteProject",
+    "RelativePath": "api/admin/AdminProject/{projectId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "projectId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AdminApi.Controllers.AdminProjectController",
+    "Method": "DeleteMultipleProjects",
+    "RelativePath": "api/admin/AdminProject/bulk-delete",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "projectIds",
+        "Type": "System.Collections.Generic.List\u00601[[System.Guid, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "AdminUsersController",
     "Method": "GetUsers",
     "RelativePath": "api/admin/users",
@@ -65,7 +160,8 @@
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
+    "ReturnTypes": [],
+    "EndpointName": "GetUserById"
   },
   {
     "ContainingType": "AdminUsersController",

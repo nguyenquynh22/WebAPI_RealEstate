@@ -9,11 +9,14 @@ namespace Common_DTOs.Entities
     public class Project
     {
        public Guid ProjectId { get; set; }
-        public string ProjectName { get; set; }
+        public string ProjectName { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
         public string Location { get; set; } = string.Empty;
-        public string Developer { get; set; }
-        public DateTime CreatedAt { get; set; }
+        public string Developer { get; set; } = string.Empty;
+        public string Status { get; set; } = "Active"; 
+        public DateTime CreatedAt { get; set; } = DateTime.Now;
         public DateTime? UpdatedAt { get; set; }
+        public string BlockOrTower { get; set; } = string.Empty;
+        public string UnitNumber { get; set; } = string.Empty;
     }
 }

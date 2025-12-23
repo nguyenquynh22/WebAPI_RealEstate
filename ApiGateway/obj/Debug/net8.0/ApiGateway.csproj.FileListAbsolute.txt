@@ -52,3 +52,4 @@ F:\WebAPI_RealEstate\WebAPI_RealEstate\ApiGateway\obj\Debug\net8.0\refint\ApiGat
 F:\WebAPI_RealEstate\WebAPI_RealEstate\ApiGateway\obj\Debug\net8.0\ApiGateway.pdb
 F:\WebAPI_RealEstate\WebAPI_RealEstate\ApiGateway\obj\Debug\net8.0\ApiGateway.genruntimeconfig.cache
 F:\WebAPI_RealEstate\WebAPI_RealEstate\ApiGateway\obj\Debug\net8.0\ref\ApiGateway.dll
+F:\WebAPI_RealEstate\WebAPI_RealEstate\ApiGateway\obj\Debug\net8.0\ApiGateway.sourcelink.json

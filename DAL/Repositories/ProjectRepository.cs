@@ -4,41 +4,39 @@ using System.Data;
 using Microsoft.Data.SqlClient;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Common_DTOs.Entities;
-using Common_DAL.Interfaces;
 
 namespace Common_DAL.Repositories
 {
     public class ProjectRepository : IProjectRepository
     {
-        private readonly string _connectionString;
-        public ProjectRepository(string connectionString)
+        private readonly SqlHelper _sqlHelper;
+
+        public ProjectRepository(SqlHelper sqlHelper)
         {
-            _connectionString = connectionString;
+            _sqlHelper = sqlHelper;
         }
+
         public async Task<List<Project>> GetAllProjectsAsync()
         {
             var projects = new List<Project>();
-            using var conn = new SqlConnection(_connectionString);
-            using var cmd = new SqlCommand("SELECT * FROM Projects", conn);
+            string sql = "SELECT * FROM Projects";
 
-            await conn.OpenAsync();
-            using var reader = await cmd.ExecuteReaderAsync();
+            using var reader = await _sqlHelper.ExecuteReaderAsync(sql, CommandType.Text);
             while (await reader.ReadAsync())
             {
                 projects.Add(MapToProject(reader));
             }
             return projects;
         }
+
         public async Task<Project?> GetProjectByIdAsync(Guid projectId)
         {
-            using var conn = new SqlConnection(_connectionString);
-            using var cmd = new SqlCommand("SELECT TOP 1 * FROM Projects WHERE ProjectId = @ProjectId", conn);
-            cmd.Parameters.AddWithValue("@ProjectId", projectId);
-            await conn.OpenAsync();
-            using var reader = await cmd.ExecuteReaderAsync();
+            string sql = "SELECT TOP 1 * FROM Projects WHERE ProjectId = @ProjectId";
+            var parameter = new SqlParameter("@ProjectId", projectId);
+
+            using var reader = await _sqlHelper.ExecuteReaderAsync(sql, CommandType.Text, parameter);
             if (await reader.ReadAsync())
             {
                 return MapToProject(reader);
@@ -46,70 +44,113 @@ namespace Common_DAL.Repositories
             return null;
         }
 
+        public async Task<List<Project>> GetPagedProjectsAsync(string? searchTerm, int pageNumber, int pageSize)
+        {
+            var projects = new List<Project>();
+            string sql = @"
+                SELECT * FROM Projects 
+                WHERE (@Search IS NULL OR 
+                       ProjectName LIKE @Search OR 
+                       Location LIKE @Search OR 
+                       Developer LIKE @Search)
+                ORDER BY CreatedAt DESC
+                OFFSET @Offset ROWS FETCH NEXT @PageSize ROWS ONLY";
+
+            var parameters = new[]
+            {
+                new SqlParameter("@Search", string.IsNullOrEmpty(searchTerm) ? DBNull.Value : $"%{searchTerm}%"),
+                new SqlParameter("@Offset", (pageNumber - 1) * pageSize),
+                new SqlParameter("@PageSize", pageSize)
+            };
+
+            using var reader = await _sqlHelper.ExecuteReaderAsync(sql, CommandType.Text, parameters);
+            while (await reader.ReadAsync())
+            {
+                projects.Add(MapToProject(reader));
+            }
+            return projects;
+        }
+
         public async Task<Project> CreateProjectAsync(Project project)
         {
-            using var conn = new SqlConnection(_connectionString);
-            using var cmd = new SqlCommand("INSERT INTO Projects (ProjectId, ProjectName, Description, Location, Developer, Status, CreatedAt) VALUES (@ProjectId, @ProjectName, @Description, @Location, @Developer, @Status, @CreatedAt)", conn);
-            cmd.Parameters.AddWithValue("@ProjectId", project.ProjectId);
-            cmd.Parameters.AddWithValue("@ProjectName", project.ProjectName);
-            cmd.Parameters.AddWithValue("@Description", project.Description);
-            cmd.Parameters.AddWithValue("@Location", project.Location);
-            cmd.Parameters.AddWithValue("@Developer", project.Developer);
-            cmd.Parameters.AddWithValue("@Status", project.Status);
-            cmd.Parameters.AddWithValue("@CreatedAt", project.CreatedAt);
-            await conn.OpenAsync();
-            await cmd.ExecuteNonQueryAsync();
+            string sql = @"INSERT INTO Projects (ProjectId, ProjectName, Description, Location, Developer, Status, CreatedAt, BlockOrTower, UnitNumber) 
+                           VALUES (@ProjectId, @ProjectName, @Description, @Location, @Developer, @Status, @CreatedAt, @BlockOrTower, @UnitNumber)";
+
+            var parameters = new[]
+            {
+                new SqlParameter("@ProjectId", project.ProjectId),
+                new SqlParameter("@ProjectName", project.ProjectName),
+                new SqlParameter("@Description", project.Description ?? (object)DBNull.Value),
+                new SqlParameter("@Location", project.Location ?? (object)DBNull.Value),
+                new SqlParameter("@Developer", project.Developer ?? (object)DBNull.Value),
+                new SqlParameter("@Status", project.Status),
+                new SqlParameter("@CreatedAt", project.CreatedAt),
+                new SqlParameter("@BlockOrTower", project.BlockOrTower ?? (object)DBNull.Value),
+                new SqlParameter("@UnitNumber", project.UnitNumber ?? (object)DBNull.Value)
+            };
+
+            await _sqlHelper.ExecuteNonQueryAsync(sql, CommandType.Text, parameters);
             return project;
         }
+
         public async Task<Project> UpdateProjectAsync(Project project)
         {
-            using var conn = new SqlConnection(_connectionString);
-            using var cmd = new SqlCommand("UPDATE Projects SET ProjectName = @ProjectName, Description = @Description, Location = @Location, Developer = @Developer, Status = @Status, UpdatedAt = @UpdatedAt WHERE ProjectId = @ProjectId", conn);
-            cmd.Parameters.AddWithValue("@ProjectId", project.ProjectId);
-            cmd.Parameters.AddWithValue("@ProjectName", project.ProjectName);
-            cmd.Parameters.AddWithValue("@Description", project.Description);
-            cmd.Parameters.AddWithValue("@Location", project.Location);
-            cmd.Parameters.AddWithValue("@Developer", project.Developer);
-            cmd.Parameters.AddWithValue("@Status", project.Status);
-            cmd.Parameters.AddWithValue("@UpdatedAt", project.UpdatedAt ?? (object)DBNull.Value);
-            await conn.OpenAsync();
-            await cmd.ExecuteNonQueryAsync();
+            string sql = @"UPDATE Projects SET ProjectName = @ProjectName, Description = @Description, 
+                           Location = @Location, Developer = @Developer, Status = @Status, 
+                           UpdatedAt = @UpdatedAt WHERE ProjectId = @ProjectId";
+
+            var parameters = new[]
+            {
+                new SqlParameter("@ProjectId", project.ProjectId),
+                new SqlParameter("@ProjectName", project.ProjectName),
+                new SqlParameter("@Description", project.Description ?? (object)DBNull.Value),
+                new SqlParameter("@Location", project.Location ?? (object)DBNull.Value),
+                new SqlParameter("@Developer", project.Developer ?? (object)DBNull.Value),
+                new SqlParameter("@Status", project.Status),
+                new SqlParameter("@UpdatedAt", project.UpdatedAt ?? (object)DBNull.Value)
+            };
+
+            await _sqlHelper.ExecuteNonQueryAsync(sql, CommandType.Text, parameters);
             return project;
         }
+
         public async Task<bool> DeleteProjectAsync(Guid projectId)
         {
-            using var conn = new SqlConnection(_connectionString);
-            using var cmd = new SqlCommand("DELETE FROM Projects WHERE ProjectId = @ProjectId", conn);
-            cmd.Parameters.AddWithValue("@ProjectId", projectId);
-            await conn.OpenAsync();
-            return await cmd.ExecuteNonQueryAsync() > 0;
+            string sql = "DELETE FROM Projects WHERE ProjectId = @ProjectId";
+            var parameter = new SqlParameter("@ProjectId", projectId);
+
+            int result = await _sqlHelper.ExecuteNonQueryAsync(sql, CommandType.Text, parameter);
+            return result > 0;
         }
+
+        public async Task<bool> DeleteProjectAsync(List<Guid> projectIds)
+        {
+            if (projectIds == null || projectIds.Count == 0) return false;
+
+            var idParams = string.Join(", ", projectIds.Select((id, index) => $"@Id{index}"));
+            string sql = $"DELETE FROM Projects WHERE ProjectId IN ({idParams})";
+
+            var parameters = projectIds.Select((id, index) => new SqlParameter($"@Id{index}", id)).ToArray();
+
+            int result = await _sqlHelper.ExecuteNonQueryAsync(sql, CommandType.Text, parameters);
+            return result > 0;
+        }
+
         private Project MapToProject(SqlDataReader reader)
         {
             return new Project
             {
                 ProjectId = (Guid)reader["ProjectId"],
-                ProjectName = reader["ProjectName"].ToString(),
-                Description = reader["Description"].ToString(),
-                Location = reader["Location"].ToString(),
-                Developer = reader["Developer"].ToString(),
+                ProjectName = reader["ProjectName"]?.ToString() ?? string.Empty,
+                Description = reader["Description"]?.ToString() ?? string.Empty,
+                Location = reader["Location"]?.ToString() ?? string.Empty,
+                Developer = reader["Developer"]?.ToString() ?? string.Empty,
+                Status = reader["Status"]?.ToString() ?? "Active",
+                BlockOrTower = reader["BlockOrTower"]?.ToString() ?? string.Empty,
+                UnitNumber = reader["UnitNumber"]?.ToString() ?? string.Empty,
                 CreatedAt = (DateTime)reader["CreatedAt"],
                 UpdatedAt = reader["UpdatedAt"] as DateTime?
             };
-        }
-        public async Task<bool> DeleteProjectAsync(List<Guid> projectIds)
-        {
-            if (projectIds == null || projectIds.Count == 0)
-                return false;
-            using var conn = new SqlConnection(_connectionString);
-            var idParams = string.Join(", ", projectIds.Select((id, index) => $"@Id{index}"));
-            using var cmd = new SqlCommand($"DELETE FROM Projects WHERE ProjectId IN ({idParams})", conn);
-            for (int i = 0; i < projectIds.Count; i++)
-            {
-                cmd.Parameters.AddWithValue($"@Id{i}", projectIds[i]);
-            }
-            await conn.OpenAsync();
-            return await cmd.ExecuteNonQueryAsync() > 0;
         }
     }
 }

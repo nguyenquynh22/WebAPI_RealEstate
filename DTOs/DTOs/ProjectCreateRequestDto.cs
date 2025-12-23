@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace Common_DTOs.DTOs
 {
-    internal class ProjectCreateRequestDto
+    public class ProjectCreateRequestDto
     {
+        public string ProjectName { get; set; }
+        public string Description { get; set; }
+        public string Location { get; set; }
+        public string Developer { get; set; }
     }
 }

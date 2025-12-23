@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common_DAL", "DAL\Common_DA
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common_DTOs", "DTOs\Common_DTOs.csproj", "{2FF82B98-7AE3-41F1-B0D6-72EFA212ABEE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common_Shared", "Common_Shared\Common_Shared.csproj", "{877FA809-502D-4C35-9BBB-76C3CBCDBFEF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{2FF82B98-7AE3-41F1-B0D6-72EFA212ABEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2FF82B98-7AE3-41F1-B0D6-72EFA212ABEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2FF82B98-7AE3-41F1-B0D6-72EFA212ABEE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{877FA809-502D-4C35-9BBB-76C3CBCDBFEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{877FA809-502D-4C35-9BBB-76C3CBCDBFEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{877FA809-502D-4C35-9BBB-76C3CBCDBFEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{877FA809-502D-4C35-9BBB-76C3CBCDBFEF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -62,6 +68,7 @@ Global
 		{86A7D602-1306-40DC-8B72-9B4E4FD66E20} = {70DB3D13-B80E-4167-BC88-BC58FB080A9C}
 		{D151D347-B7FD-4FE5-A2EE-692EA31E4610} = {70DB3D13-B80E-4167-BC88-BC58FB080A9C}
 		{2FF82B98-7AE3-41F1-B0D6-72EFA212ABEE} = {70DB3D13-B80E-4167-BC88-BC58FB080A9C}
+		{877FA809-502D-4C35-9BBB-76C3CBCDBFEF} = {70DB3D13-B80E-4167-BC88-BC58FB080A9C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {08313653-0B5D-4BD8-934A-F06D3DE58B1F}

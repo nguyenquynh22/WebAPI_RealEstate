@@ -21,9 +21,34 @@ namespace Common_BLL.Services
         public async Task<List<ProjectResponseDto>> GetAllProjectsAsync()
         {
             var entities = await _projectRepository.GetAllProjectsAsync();
-
-            // Chuyển đổi List<Entity> -> List<DTO>
             return entities.Select(e => MapToDto(e)).ToList();
+        }
+
+        public async Task<PagedResultDto<ProjectResponseDto>> GetPagedProjectsAsync(string? searchItem, int pageNumber, int pageSize)
+        {
+            var entities = await _projectRepository.GetAllProjectsAsync();
+            var filtered = entities.AsQueryable();
+            if (!string.IsNullOrEmpty(searchItem))
+            {
+                var search = searchItem.ToLower();
+                filtered = filtered.Where(p => p.ProjectName.ToLower().Contains(search) ||
+                                              p.Description.ToLower().Contains(search) ||
+                                              p.Location.ToLower().Contains(search) ||
+                                              p.Developer.ToLower().Contains(search));
+            }
+            var totalCount = filtered.Count();
+
+            var pagedEntities = filtered
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .ToList();
+            return new PagedResultDto<ProjectResponseDto>
+            {
+                Items = pagedEntities.Select(e => MapToDto(e)).ToList(),
+                TotalCount = totalCount,
+                PageNumber = pageNumber,
+                PageSize = pageSize
+            };
         }
 
         public async Task<ProjectResponseDto?> GetProjectByIdAsync(Guid projectId)

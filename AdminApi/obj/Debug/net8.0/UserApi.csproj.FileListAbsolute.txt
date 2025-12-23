@@ -18,7 +18,6 @@ F:\WebAPI_RealEstate\WebAPI_RealEstate\AdminApi\bin\Debug\net8.0\Microsoft.Exten
 F:\WebAPI_RealEstate\WebAPI_RealEstate\AdminApi\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
 F:\WebAPI_RealEstate\WebAPI_RealEstate\AdminApi\bin\Debug\net8.0\Microsoft.Extensions.Logging.Abstractions.dll
 F:\WebAPI_RealEstate\WebAPI_RealEstate\AdminApi\bin\Debug\net8.0\Microsoft.Extensions.Options.dll
-F:\WebAPI_RealEstate\WebAPI_RealEstate\AdminApi\bin\Debug\net8.0\Microsoft.Extensions.Primitives.dll
 F:\WebAPI_RealEstate\WebAPI_RealEstate\AdminApi\bin\Debug\net8.0\Microsoft.Identity.Client.dll
 F:\WebAPI_RealEstate\WebAPI_RealEstate\AdminApi\bin\Debug\net8.0\Microsoft.Identity.Client.Extensions.Msal.dll
 F:\WebAPI_RealEstate\WebAPI_RealEstate\AdminApi\bin\Debug\net8.0\Microsoft.IdentityModel.Abstractions.dll
@@ -34,7 +33,6 @@ F:\WebAPI_RealEstate\WebAPI_RealEstate\AdminApi\bin\Debug\net8.0\Swashbuckle.Asp
 F:\WebAPI_RealEstate\WebAPI_RealEstate\AdminApi\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
 F:\WebAPI_RealEstate\WebAPI_RealEstate\AdminApi\bin\Debug\net8.0\System.ClientModel.dll
 F:\WebAPI_RealEstate\WebAPI_RealEstate\AdminApi\bin\Debug\net8.0\System.Configuration.ConfigurationManager.dll
-F:\WebAPI_RealEstate\WebAPI_RealEstate\AdminApi\bin\Debug\net8.0\System.Diagnostics.DiagnosticSource.dll
 F:\WebAPI_RealEstate\WebAPI_RealEstate\AdminApi\bin\Debug\net8.0\System.Diagnostics.EventLog.dll
 F:\WebAPI_RealEstate\WebAPI_RealEstate\AdminApi\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
 F:\WebAPI_RealEstate\WebAPI_RealEstate\AdminApi\bin\Debug\net8.0\System.Memory.Data.dll
@@ -90,3 +88,6 @@ F:\WebAPI_RealEstate\WebAPI_RealEstate\AdminApi\obj\Debug\net8.0\UserApi.pdb
 F:\WebAPI_RealEstate\WebAPI_RealEstate\AdminApi\obj\Debug\net8.0\UserApi.genruntimeconfig.cache
 F:\WebAPI_RealEstate\WebAPI_RealEstate\AdminApi\obj\Debug\net8.0\ref\UserApi.dll
 F:\WebAPI_RealEstate\WebAPI_RealEstate\AdminApi\obj\Debug\net8.0\UserApi.sourcelink.json
+F:\WebAPI_RealEstate\WebAPI_RealEstate\AdminApi\bin\Debug\net8.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+F:\WebAPI_RealEstate\WebAPI_RealEstate\AdminApi\bin\Debug\net8.0\Common_Shared.dll
+F:\WebAPI_RealEstate\WebAPI_RealEstate\AdminApi\bin\Debug\net8.0\Common_Shared.pdb

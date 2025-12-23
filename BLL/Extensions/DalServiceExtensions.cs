@@ -2,11 +2,6 @@
 using Common_DAL.Repositories;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Common_BLL.Extensions
 {
@@ -14,12 +9,16 @@ namespace Common_BLL.Extensions
     {
         public static IServiceCollection AddDalServices(this IServiceCollection services, IConfiguration config)
         {
-            // 1. Lấy chuỗi kết nối
             var connectionString = config.GetConnectionString("DefaultConnection");
 
-            // 2. Đăng ký SqlHelper và Repository (Tất cả thuộc DAL)
+            // 1. Đăng ký SqlHelper với chuỗi kết nối
+            // Điều này giải quyết lỗi "cannot convert from string to SqlHelper"
             services.AddSingleton(new SqlHelper(connectionString!));
+
+            // 2. Đăng ký các Repository
+            // ASP.NET Core sẽ tự tìm thấy SqlHelper ở trên để truyền vào Constructor của Repository
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IProjectRepository, ProjectRepository>(); // Giải quyết lỗi "Unable to resolve service"
 
             return services;
         }

@@ -1,14 +1,15 @@
-﻿using System;
+﻿using Common_DTOs.DTOs;
+using Common_DTOs.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Common_DTOs.Entities;
 
 namespace Common_BLL.Interfaces
 {
     public interface ITokenService
     {
-        string CreateToken(User user);
+        string CreateToken(UserResponseDto user);
     }
 }

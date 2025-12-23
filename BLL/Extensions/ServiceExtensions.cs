@@ -1,23 +1,24 @@
-﻿using AutoMapper; 
-using Common_BLL.Extensions;
-using Common_BLL.Interfaces;
-using Common_BLL.Profiles;
+﻿using Common_BLL.Interfaces;
 using Common_BLL.Services;
+using Common_BLL.Profiles;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection; 
-using System;
-using Common_DAL.Repositories;
-using Common_DAL.Interfaces;
+using Microsoft.Extensions.DependencyInjection;
 
-namespace AdminApi.Extensions
+namespace Common_BLL.Extensions
 {
     public static class ServiceExtensions
     {
         public static IServiceCollection AddApplicationServices(this IServiceCollection services, IConfiguration config)
         {
+            // Gọi đăng ký tầng DAL (đã bao gồm SqlHelper và Repositories)
             services.AddDalServices(config);
+
+            // Đăng ký các nghiệp vụ Service
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<ITokenService, TokenService>();
+            services.AddScoped<IProjectService, ProjectService>();
+
+            // Đăng ký AutoMapper phiên bản 12.0.1
             services.AddAutoMapper(cfg =>
             {
                 cfg.AddMaps(typeof(UserMappingProfile).Assembly);

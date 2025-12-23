@@ -42,7 +42,6 @@ F:\WebAPI_RealEstate\WebAPI_RealEstate\WebAPI_RealEstate\bin\Debug\net8.0\Swashb
 F:\WebAPI_RealEstate\WebAPI_RealEstate\WebAPI_RealEstate\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
 F:\WebAPI_RealEstate\WebAPI_RealEstate\WebAPI_RealEstate\bin\Debug\net8.0\System.ClientModel.dll
 F:\WebAPI_RealEstate\WebAPI_RealEstate\WebAPI_RealEstate\bin\Debug\net8.0\System.Configuration.ConfigurationManager.dll
-F:\WebAPI_RealEstate\WebAPI_RealEstate\WebAPI_RealEstate\bin\Debug\net8.0\System.Diagnostics.DiagnosticSource.dll
 F:\WebAPI_RealEstate\WebAPI_RealEstate\WebAPI_RealEstate\bin\Debug\net8.0\System.Diagnostics.EventLog.dll
 F:\WebAPI_RealEstate\WebAPI_RealEstate\WebAPI_RealEstate\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
 F:\WebAPI_RealEstate\WebAPI_RealEstate\WebAPI_RealEstate\bin\Debug\net8.0\System.Memory.Data.dll
@@ -90,3 +89,6 @@ F:\WebAPI_RealEstate\WebAPI_RealEstate\WebAPI_RealEstate\obj\Debug\net8.0\AdminA
 F:\WebAPI_RealEstate\WebAPI_RealEstate\WebAPI_RealEstate\obj\Debug\net8.0\AdminApi.genruntimeconfig.cache
 F:\WebAPI_RealEstate\WebAPI_RealEstate\WebAPI_RealEstate\obj\Debug\net8.0\ref\AdminApi.dll
 F:\WebAPI_RealEstate\WebAPI_RealEstate\WebAPI_RealEstate\obj\Debug\net8.0\AdminApi.sourcelink.json
+F:\WebAPI_RealEstate\WebAPI_RealEstate\WebAPI_RealEstate\bin\Debug\net8.0\Common_Shared.dll
+F:\WebAPI_RealEstate\WebAPI_RealEstate\WebAPI_RealEstate\bin\Debug\net8.0\Common_Shared.pdb
+F:\WebAPI_RealEstate\WebAPI_RealEstate\WebAPI_RealEstate\bin\Debug\net8.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
