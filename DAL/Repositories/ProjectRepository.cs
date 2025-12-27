@@ -95,9 +95,11 @@ namespace Common_DAL.Repositories
 
         public async Task<Project> UpdateProjectAsync(Project project)
         {
+            project.UpdatedAt = DateTime.Now;
+
             string sql = @"UPDATE Projects SET ProjectName = @ProjectName, Description = @Description, 
-                           Location = @Location, Developer = @Developer, Status = @Status, 
-                           UpdatedAt = @UpdatedAt WHERE ProjectId = @ProjectId";
+                   Location = @Location, Developer = @Developer, Status = @Status, 
+                   UpdatedAt = @UpdatedAt WHERE ProjectId = @ProjectId";
 
             var parameters = new[]
             {
@@ -107,7 +109,7 @@ namespace Common_DAL.Repositories
                 new SqlParameter("@Location", project.Location ?? (object)DBNull.Value),
                 new SqlParameter("@Developer", project.Developer ?? (object)DBNull.Value),
                 new SqlParameter("@Status", project.Status),
-                new SqlParameter("@UpdatedAt", project.UpdatedAt ?? (object)DBNull.Value)
+                new SqlParameter("@UpdatedAt", project.UpdatedAt) 
             };
 
             await _sqlHelper.ExecuteNonQueryAsync(sql, CommandType.Text, parameters);

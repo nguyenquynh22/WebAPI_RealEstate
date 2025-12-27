@@ -28,6 +28,19 @@ namespace AdminApi.Controllers
             return Ok(pagedProjects);
         }
 
+        [HttpGet("{projectId}")]
+        public async Task<IActionResult> GetProjectById(Guid projectId)
+        {
+            var project = await _projectService.GetProjectByIdAsync(projectId);
+
+            if (project == null)
+            {
+                return NotFound(new { message = "Không tìm thấy dự án này." });
+            }
+
+            return Ok(project);
+        }
+
         [HttpPost]
         public async Task<IActionResult> CreateProject([FromBody] ProjectCreateRequestDto request)
         {

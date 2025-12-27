@@ -1,6 +1,4 @@
-﻿// File: Common.DAL/Helpers/SqlHelper.cs
-
-using Microsoft.Data.SqlClient;
+﻿using Microsoft.Data.SqlClient;
 using System.Data;
 using System.Threading.Tasks;
 
@@ -28,7 +26,6 @@ public class SqlHelper
         params SqlParameter[] parameters)
     {
         var connection = GetConnection();
-        // Mở kết nối
         await connection.OpenAsync();
 
         var command = new SqlCommand(sql, connection);
@@ -38,9 +35,6 @@ public class SqlHelper
         {
             command.Parameters.AddRange(parameters);
         }
-
-        // CommandBehavior.CloseConnection đảm bảo rằng khi SqlDataReader được đóng, 
-        // đối tượng SqlConnection cũng tự động đóng theo.
         return await command.ExecuteReaderAsync(CommandBehavior.CloseConnection);
     }
 
@@ -50,7 +44,7 @@ public class SqlHelper
         CommandType commandType,
         params SqlParameter[] parameters)
     {
-        using (var connection = GetConnection()) // Đảm bảo kết nối được dispose
+        using (var connection = GetConnection()) 
         {
             await connection.OpenAsync();
             using (var command = new SqlCommand(sql, connection))

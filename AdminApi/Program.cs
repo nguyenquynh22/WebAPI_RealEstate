@@ -1,5 +1,6 @@
-﻿using Common_Shared.Extensions;
-using Common_BLL.Extensions;
+﻿using Common_BLL.Extensions;
+using Common_Shared.Extensions;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 var config = builder.Configuration;
@@ -16,6 +17,26 @@ builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "User API", Version = "v1" });
     c.CustomSchemaIds(type => type.FullName);
+
+    // Thêm cấu hình này để Swagger của User có nút "Authorize"
+    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    {
+        Description = "Nhập Token theo cú pháp: Bearer {token}",
+        Name = "Authorization",
+        In = ParameterLocation.Header,
+        Type = SecuritySchemeType.ApiKey,
+        Scheme = "Bearer"
+    });
+
+    c.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "Bearer" }
+            }, new string[] { }
+        }
+    });
 });
 builder.Services.AddEndpointsApiExplorer();
 
