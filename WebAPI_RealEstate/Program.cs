@@ -1,8 +1,4 @@
-﻿using AdminApi;
-using Common_BLL.Extensions;
-using Common_BLL.Interfaces;
-using Common_BLL.Services;
-using Common_Shared.Constants;
+﻿using Common_BLL.Extensions;
 using Common_Shared.Extensions;
 using Common_Shared.Middlewares;
 using Microsoft.OpenApi.Models;
@@ -12,8 +8,9 @@ var config = builder.Configuration;
 
 // --- SERVICE REGISTRATION ---
 builder.Services.AddControllers();
-builder.Services.AddApplicationServices(builder.Configuration);
+builder.Services.AddEndpointsApiExplorer();
 
+builder.Services.AddApplicationServices(config);  // DAL + BLL + AutoMapper
 builder.Services.AddJwtAuthentication(config);
 
 builder.Services.AddSwaggerGen(c =>
@@ -21,7 +18,6 @@ builder.Services.AddSwaggerGen(c =>
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "Admin API", Version = "v1" });
     c.CustomSchemaIds(type => type.FullName);
 
-    // Chỉ giữ lại Bearer Token
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
         Description = "Nhập Token theo cú pháp: Bearer {token}",
@@ -37,12 +33,11 @@ builder.Services.AddSwaggerGen(c =>
             new OpenApiSecurityScheme
             {
                 Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "Bearer" }
-            }, new string[] { }
+            },
+            new string[] { }
         }
     });
 });
-
-builder.Services.AddEndpointsApiExplorer();
 
 // --- MIDDLEWARE CONFIGURATION ---
 var app = builder.Build();
@@ -50,9 +45,7 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI(c => {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Admin API v1");
-    });
+    app.UseSwaggerUI();
 }
 
 app.UseHttpsRedirection();

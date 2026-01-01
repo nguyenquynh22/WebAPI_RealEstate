@@ -10,3 +10,15 @@ F:\WebAPI_RealEstate\WebAPI_RealEstate\DTOs\obj\Debug\net8.0\refint\Common_DTOs.
 F:\WebAPI_RealEstate\WebAPI_RealEstate\DTOs\obj\Debug\net8.0\Common_DTOs.pdb
 F:\WebAPI_RealEstate\WebAPI_RealEstate\DTOs\obj\Debug\net8.0\ref\Common_DTOs.dll
 F:\WebAPI_RealEstate\WebAPI_RealEstate\DTOs\obj\Debug\net8.0\Common_DTOs.sourcelink.json
+C:\Users\Admin\Source\Repos\WebAPI_RealEstate\DTOs\bin\Debug\net8.0\Common_DTOs.deps.json
+C:\Users\Admin\Source\Repos\WebAPI_RealEstate\DTOs\bin\Debug\net8.0\Common_DTOs.dll
+C:\Users\Admin\Source\Repos\WebAPI_RealEstate\DTOs\bin\Debug\net8.0\Common_DTOs.pdb
+C:\Users\Admin\Source\Repos\WebAPI_RealEstate\DTOs\obj\Debug\net8.0\Common_DTOs.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Admin\Source\Repos\WebAPI_RealEstate\DTOs\obj\Debug\net8.0\Common_DTOs.AssemblyInfoInputs.cache
+C:\Users\Admin\Source\Repos\WebAPI_RealEstate\DTOs\obj\Debug\net8.0\Common_DTOs.AssemblyInfo.cs
+C:\Users\Admin\Source\Repos\WebAPI_RealEstate\DTOs\obj\Debug\net8.0\Common_DTOs.csproj.CoreCompileInputs.cache
+C:\Users\Admin\Source\Repos\WebAPI_RealEstate\DTOs\obj\Debug\net8.0\Common_DTOs.sourcelink.json
+C:\Users\Admin\Source\Repos\WebAPI_RealEstate\DTOs\obj\Debug\net8.0\Common_DTOs.dll
+C:\Users\Admin\Source\Repos\WebAPI_RealEstate\DTOs\obj\Debug\net8.0\refint\Common_DTOs.dll
+C:\Users\Admin\Source\Repos\WebAPI_RealEstate\DTOs\obj\Debug\net8.0\Common_DTOs.pdb
+C:\Users\Admin\Source\Repos\WebAPI_RealEstate\DTOs\obj\Debug\net8.0\ref\Common_DTOs.dll

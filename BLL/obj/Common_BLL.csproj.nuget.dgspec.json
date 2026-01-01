@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "F:\\WebAPI_RealEstate\\WebAPI_RealEstate\\BLL\\Common_BLL.csproj": {}
+    "C:\\Users\\Admin\\source\\repos\\WebAPI_RealEstate\\BLL\\Common_BLL.csproj": {}
   },
   "projects": {
-    "F:\\WebAPI_RealEstate\\WebAPI_RealEstate\\BLL\\Common_BLL.csproj": {
+    "C:\\Users\\Admin\\source\\repos\\WebAPI_RealEstate\\BLL\\Common_BLL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\WebAPI_RealEstate\\WebAPI_RealEstate\\BLL\\Common_BLL.csproj",
+        "projectUniqueName": "C:\\Users\\Admin\\source\\repos\\WebAPI_RealEstate\\BLL\\Common_BLL.csproj",
         "projectName": "Common_BLL",
-        "projectPath": "F:\\WebAPI_RealEstate\\WebAPI_RealEstate\\BLL\\Common_BLL.csproj",
-        "packagesPath": "C:\\Users\\ACER\\.nuget\\packages\\",
-        "outputPath": "F:\\WebAPI_RealEstate\\WebAPI_RealEstate\\BLL\\obj\\",
+        "projectPath": "C:\\Users\\Admin\\source\\repos\\WebAPI_RealEstate\\BLL\\Common_BLL.csproj",
+        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Admin\\source\\repos\\WebAPI_RealEstate\\BLL\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\ACER\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -32,11 +28,11 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "F:\\WebAPI_RealEstate\\WebAPI_RealEstate\\DAL\\Common_DAL.csproj": {
-                "projectPath": "F:\\WebAPI_RealEstate\\WebAPI_RealEstate\\DAL\\Common_DAL.csproj"
+              "C:\\Users\\Admin\\source\\repos\\WebAPI_RealEstate\\DAL\\Common_DAL.csproj": {
+                "projectPath": "C:\\Users\\Admin\\source\\repos\\WebAPI_RealEstate\\DAL\\Common_DAL.csproj"
               },
-              "F:\\WebAPI_RealEstate\\WebAPI_RealEstate\\DTOs\\Common_DTOs.csproj": {
-                "projectPath": "F:\\WebAPI_RealEstate\\WebAPI_RealEstate\\DTOs\\Common_DTOs.csproj"
+              "C:\\Users\\Admin\\source\\repos\\WebAPI_RealEstate\\DTOs\\Common_DTOs.csproj": {
+                "projectPath": "C:\\Users\\Admin\\source\\repos\\WebAPI_RealEstate\\DTOs\\Common_DTOs.csproj"
               }
             }
           }
@@ -50,8 +46,7 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        },
-        "SdkAnalysisLevel": "9.0.300"
+        }
       },
       "frameworks": {
         "net8.0": {
@@ -90,25 +85,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.306/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "F:\\WebAPI_RealEstate\\WebAPI_RealEstate\\DAL\\Common_DAL.csproj": {
+    "C:\\Users\\Admin\\source\\repos\\WebAPI_RealEstate\\DAL\\Common_DAL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\WebAPI_RealEstate\\WebAPI_RealEstate\\DAL\\Common_DAL.csproj",
+        "projectUniqueName": "C:\\Users\\Admin\\source\\repos\\WebAPI_RealEstate\\DAL\\Common_DAL.csproj",
         "projectName": "Common_DAL",
-        "projectPath": "F:\\WebAPI_RealEstate\\WebAPI_RealEstate\\DAL\\Common_DAL.csproj",
-        "packagesPath": "C:\\Users\\ACER\\.nuget\\packages\\",
-        "outputPath": "F:\\WebAPI_RealEstate\\WebAPI_RealEstate\\DAL\\obj\\",
+        "projectPath": "C:\\Users\\Admin\\source\\repos\\WebAPI_RealEstate\\DAL\\Common_DAL.csproj",
+        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Admin\\source\\repos\\WebAPI_RealEstate\\DAL\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\ACER\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -122,8 +113,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "F:\\WebAPI_RealEstate\\WebAPI_RealEstate\\DTOs\\Common_DTOs.csproj": {
-                "projectPath": "F:\\WebAPI_RealEstate\\WebAPI_RealEstate\\DTOs\\Common_DTOs.csproj"
+              "C:\\Users\\Admin\\source\\repos\\WebAPI_RealEstate\\DTOs\\Common_DTOs.csproj": {
+                "projectPath": "C:\\Users\\Admin\\source\\repos\\WebAPI_RealEstate\\DTOs\\Common_DTOs.csproj"
               }
             }
           }
@@ -137,8 +128,7 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        },
-        "SdkAnalysisLevel": "9.0.300"
+        }
       },
       "frameworks": {
         "net8.0": {
@@ -165,25 +155,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.306/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "F:\\WebAPI_RealEstate\\WebAPI_RealEstate\\DTOs\\Common_DTOs.csproj": {
+    "C:\\Users\\Admin\\source\\repos\\WebAPI_RealEstate\\DTOs\\Common_DTOs.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\WebAPI_RealEstate\\WebAPI_RealEstate\\DTOs\\Common_DTOs.csproj",
+        "projectUniqueName": "C:\\Users\\Admin\\source\\repos\\WebAPI_RealEstate\\DTOs\\Common_DTOs.csproj",
         "projectName": "Common_DTOs",
-        "projectPath": "F:\\WebAPI_RealEstate\\WebAPI_RealEstate\\DTOs\\Common_DTOs.csproj",
-        "packagesPath": "C:\\Users\\ACER\\.nuget\\packages\\",
-        "outputPath": "F:\\WebAPI_RealEstate\\WebAPI_RealEstate\\DTOs\\obj\\",
+        "projectPath": "C:\\Users\\Admin\\source\\repos\\WebAPI_RealEstate\\DTOs\\Common_DTOs.csproj",
+        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Admin\\source\\repos\\WebAPI_RealEstate\\DTOs\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\ACER\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -208,8 +194,7 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        },
-        "SdkAnalysisLevel": "9.0.300"
+        }
       },
       "frameworks": {
         "net8.0": {
@@ -230,7 +215,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.306/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

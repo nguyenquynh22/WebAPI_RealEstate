@@ -470,25 +470,26 @@
           }
         }
       },
-      "System.Text.Json/8.0.5": {},
+      "System.Text.Json/8.0.5": {
+        "runtime": {
+          "lib/net8.0/System.Text.Json.dll": {
+            "assemblyVersion": "8.0.0.0",
+            "fileVersion": "8.0.1024.46610"
+          }
+        }
+      },
       "Common_DAL/1.0.0": {
         "dependencies": {
           "Common_DTOs": "1.0.0",
           "Microsoft.Data.SqlClient": "6.1.3"
         },
         "runtime": {
-          "Common_DAL.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
+          "Common_DAL.dll": {}
         }
       },
       "Common_DTOs/1.0.0": {
         "runtime": {
-          "Common_DTOs.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
+          "Common_DTOs.dll": {}
         }
       }
     }

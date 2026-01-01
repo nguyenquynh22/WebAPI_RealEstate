@@ -19,6 +19,8 @@ namespace Common_BLL.Extensions
             // ASP.NET Core sẽ tự tìm thấy SqlHelper ở trên để truyền vào Constructor của Repository
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IProjectRepository, ProjectRepository>(); // Giải quyết lỗi "Unable to resolve service"
+            services.AddScoped<IPropertiesRepository, PropertiesRepository>();
+
 
             return services;
         }

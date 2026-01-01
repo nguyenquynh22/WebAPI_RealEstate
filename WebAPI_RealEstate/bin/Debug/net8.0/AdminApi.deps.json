@@ -518,7 +518,14 @@
         }
       },
       "System.Text.Encodings.Web/8.0.0": {},
-      "System.Text.Json/8.0.5": {},
+      "System.Text.Json/8.0.5": {
+        "runtime": {
+          "lib/net8.0/System.Text.Json.dll": {
+            "assemblyVersion": "8.0.0.0",
+            "fileVersion": "8.0.1024.46610"
+          }
+        }
+      },
       "Common_BLL/1.0.0": {
         "dependencies": {
           "AutoMapper": "12.0.1",
@@ -529,10 +536,7 @@
           "Microsoft.Extensions.Configuration": "8.0.0"
         },
         "runtime": {
-          "Common_BLL.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
+          "Common_BLL.dll": {}
         }
       },
       "Common_DAL/1.0.0": {
@@ -541,18 +545,12 @@
           "Microsoft.Data.SqlClient": "6.1.3"
         },
         "runtime": {
-          "Common_DAL.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
+          "Common_DAL.dll": {}
         }
       },
       "Common_DTOs/1.0.0": {
         "runtime": {
-          "Common_DTOs.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
+          "Common_DTOs.dll": {}
         }
       },
       "Common_Shared/1.0.0": {
@@ -563,10 +561,7 @@
           "Swashbuckle.AspNetCore": "6.6.2"
         },
         "runtime": {
-          "Common_Shared.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
+          "Common_Shared.dll": {}
         }
       }
     }
