@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace Common_DTOs.Entities
 {
-    internal class ProjectAreaPropertyTypes
+    public class ProjectAreaPropertyTypes
     {
+        public Guid ProjectAreaPropertyTypeId { get; set; }
+        public Guid AreaId { get; set; }
+        public int PropertyTypeId { get; set; }
+        public string? AreaName { get; set; }
+        public string? TypeName { get; set; }
     }
 }

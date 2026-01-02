@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Common_DTOs.DTOs
 {
-    internal class PropertyTypeCreateRequestDto
+    public class PropertyTypeCreateRequestDto
     {
+        public string TypeName { get; set; } = string.Empty;
     }
 }

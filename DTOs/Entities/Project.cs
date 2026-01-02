@@ -16,7 +16,5 @@ namespace Common_DTOs.Entities
         public string Status { get; set; } = "Active"; 
         public DateTime CreatedAt { get; set; } = DateTime.Now;
         public DateTime? UpdatedAt { get; set; }
-        public string BlockOrTower { get; set; } = string.Empty;
-        public string UnitNumber { get; set; } = string.Empty;
     }
 }

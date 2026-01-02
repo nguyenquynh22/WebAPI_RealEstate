@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace Common_DTOs.Entities
 {
-    internal class PropertyTypes
+    public class PropertyTypes
     {
+        public int PropertyTypeId { get; set; }
+        public string TypeName { get; set; } = string.Empty;
+        public DateTime? CreatedAt { get; set; }
+        public DateTime? UpdatedAt { get; set; }
     }
 }

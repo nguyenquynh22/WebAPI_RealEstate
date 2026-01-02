@@ -34,7 +34,6 @@ namespace Common_DTOs.Entities
         public int Views { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
-        // Computed columns
         public bool IsSoldOrRented { get; set; }
         public decimal ComputedPrice { get; set; }
     }
