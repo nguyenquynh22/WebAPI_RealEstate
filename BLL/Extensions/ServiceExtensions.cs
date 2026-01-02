@@ -19,8 +19,12 @@ namespace Common_BLL.Extensions
             services.AddScoped<IProjectService, ProjectService>();
             services.AddScoped<IPropertiesService, PropertiesService>();
             services.AddScoped<IListingsService, ListingsService>();
+<<<<<<< HEAD
             services.AddScoped<IPropertyTypeService, PropertyTypeService>();
             services.AddScoped<IAreaService, AreaService>();
+=======
+            services.AddScoped<INewsService, NewsService>();
+>>>>>>> f8e813c28b6c7c2241a2917fe12f8ab75d77275f
 
             // Đăng ký AutoMapper
             services.AddAutoMapper(cfg =>
