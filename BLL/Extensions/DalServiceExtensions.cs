@@ -21,6 +21,7 @@ namespace Common_BLL.Extensions
             services.AddScoped<IProjectRepository, ProjectRepository>(); // Giải quyết lỗi "Unable to resolve service"
             services.AddScoped<IPropertiesRepository, PropertiesRepository>();
             services.AddScoped<IListingsRepository, ListingsRepository>();
+            services.AddScoped<INewsRepository, NewsRepository>();
 
 
             return services;
