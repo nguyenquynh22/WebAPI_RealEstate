@@ -73,8 +73,8 @@ namespace Common_DAL.Repositories
 
         public async Task<Project> CreateProjectAsync(Project project)
         {
-            string sql = @"INSERT INTO Projects (ProjectId, ProjectName, Description, Location, Developer, Status, CreatedAt, BlockOrTower, UnitNumber) 
-                           VALUES (@ProjectId, @ProjectName, @Description, @Location, @Developer, @Status, @CreatedAt, @BlockOrTower, @UnitNumber)";
+            string sql = @"INSERT INTO Projects (ProjectId, ProjectName, Description, Location, Developer, Status, CreatedAt) 
+                           VALUES (@ProjectId, @ProjectName, @Description, @Location, @Developer, @Status, @CreatedAt)";
 
             var parameters = new[]
             {
@@ -84,9 +84,7 @@ namespace Common_DAL.Repositories
                 new SqlParameter("@Location", project.Location ?? (object)DBNull.Value),
                 new SqlParameter("@Developer", project.Developer ?? (object)DBNull.Value),
                 new SqlParameter("@Status", project.Status),
-                new SqlParameter("@CreatedAt", project.CreatedAt),
-                new SqlParameter("@BlockOrTower", project.BlockOrTower ?? (object)DBNull.Value),
-                new SqlParameter("@UnitNumber", project.UnitNumber ?? (object)DBNull.Value)
+                new SqlParameter("@CreatedAt", project.CreatedAt)
             };
 
             await _sqlHelper.ExecuteNonQueryAsync(sql, CommandType.Text, parameters);
@@ -148,9 +146,7 @@ namespace Common_DAL.Repositories
                 Location = reader["Location"]?.ToString() ?? string.Empty,
                 Developer = reader["Developer"]?.ToString() ?? string.Empty,
                 Status = reader["Status"]?.ToString() ?? "Active",
-                BlockOrTower = reader["BlockOrTower"]?.ToString() ?? string.Empty,
-                UnitNumber = reader["UnitNumber"]?.ToString() ?? string.Empty,
-                CreatedAt = (DateTime)reader["CreatedAt"],
+                CreatedAt = reader.GetDateTime(reader.GetOrdinal("CreatedAt")),
                 UpdatedAt = reader["UpdatedAt"] as DateTime?
             };
         }
