@@ -11,9 +11,7 @@ namespace Common_BLL.Interfaces
     public interface IProjectService
     {
         Task<List<ProjectResponseDto>> GetAllProjectsAsync();
-
         Task<PagedResultDto<ProjectResponseDto>> GetPagedProjectsAsync(string? searchItem, int pageNumber, int pageSize);
-
         Task<ProjectResponseDto?> GetProjectByIdAsync(Guid projectId);
         Task<ProjectResponseDto> CreateProjectAsync(ProjectCreateRequestDto request);
         Task<ProjectResponseDto> UpdateProjectAsync(Guid projectId, ProjectUpdateRequestDto request);

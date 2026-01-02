@@ -10,7 +10,7 @@ var config = builder.Configuration;
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 
-builder.Services.AddApplicationServices(config);  // DAL + BLL + AutoMapper
+builder.Services.AddApplicationServices(config);  
 builder.Services.AddJwtAuthentication(config);
 
 builder.Services.AddSwaggerGen(c =>

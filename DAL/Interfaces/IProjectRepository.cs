@@ -11,7 +11,7 @@ namespace Common_DAL.Interfaces
     {
         Task<List<Project>> GetAllProjectsAsync();
         Task<List<Project>> GetPagedProjectsAsync(string? searchTerm, int pageNumber, int pageSize);
-        Task<Project> GetProjectByIdAsync(Guid projectId);
+        Task<Project?> GetProjectByIdAsync(Guid projectId);
         Task<Project> CreateProjectAsync(Project project);
         Task<Project> UpdateProjectAsync(Project project);
         Task<bool> DeleteProjectAsync(Guid projectId);

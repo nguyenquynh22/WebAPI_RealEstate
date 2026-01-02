@@ -19,9 +19,10 @@ namespace Common_BLL.Extensions
             services.AddScoped<IProjectService, ProjectService>();
             services.AddScoped<IPropertiesService, PropertiesService>();
             services.AddScoped<IListingsService, ListingsService>();
+            services.AddScoped<IPropertyTypeService, PropertyTypeService>();
+            services.AddScoped<IAreaService, AreaService>();
 
-
-            // Đăng ký AutoMapper phiên bản 12.0.1
+            // Đăng ký AutoMapper
             services.AddAutoMapper(cfg =>
             {
                 cfg.AddMaps(typeof(UserMappingProfile).Assembly);

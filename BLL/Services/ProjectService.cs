@@ -26,22 +26,8 @@ namespace Common_BLL.Services
 
         public async Task<PagedResultDto<ProjectResponseDto>> GetPagedProjectsAsync(string? searchItem, int pageNumber, int pageSize)
         {
-            var entities = await _projectRepository.GetAllProjectsAsync();
-            var filtered = entities.AsQueryable();
-            if (!string.IsNullOrEmpty(searchItem))
-            {
-                var search = searchItem.ToLower();
-                filtered = filtered.Where(p => p.ProjectName.ToLower().Contains(search) ||
-                                              p.Description.ToLower().Contains(search) ||
-                                              p.Location.ToLower().Contains(search) ||
-                                              p.Developer.ToLower().Contains(search));
-            }
-            var totalCount = filtered.Count();
-
-            var pagedEntities = filtered
-                .Skip((pageNumber - 1) * pageSize)
-                .Take(pageSize)
-                .ToList();
+            var pagedEntities = await _projectRepository.GetPagedProjectsAsync(searchItem, pageNumber, pageSize);
+            var totalCount = pagedEntities.Count();
             return new PagedResultDto<ProjectResponseDto>
             {
                 Items = pagedEntities.Select(e => MapToDto(e)).ToList(),
@@ -54,9 +40,7 @@ namespace Common_BLL.Services
         public async Task<ProjectResponseDto?> GetProjectByIdAsync(Guid projectId)
         {
             var entity = await _projectRepository.GetProjectByIdAsync(projectId);
-            if (entity == null) return null;
-
-            return MapToDto(entity);
+            return entity == null ? null : MapToDto(entity);
         }
         public async Task<ProjectResponseDto> CreateProjectAsync(ProjectCreateRequestDto request)
         {
@@ -64,9 +48,9 @@ namespace Common_BLL.Services
             {
                 ProjectId = Guid.NewGuid(),
                 ProjectName = request.ProjectName,
-                Description = request.Description,
-                Location = request.Location,
-                Developer = request.Developer,
+                Description = request.Description ?? string.Empty,
+                Location = request.Location ?? string.Empty,
+                Developer = request.Developer ?? string.Empty,
                 CreatedAt = DateTime.Now,
                 Status = "Active"
             };
@@ -82,14 +66,14 @@ namespace Common_BLL.Services
             {
                 throw new KeyNotFoundException($"Project với ID {projectId} không tồn tại.");
             }
-            existing.ProjectName = request.ProjectName;
-            existing.Description = request.Description;
-            existing.Location = request.Location;
-            existing.Developer = request.Developer;
+            if (!string.IsNullOrWhiteSpace(request.ProjectName)) existing.ProjectName = request.ProjectName;
+            if (request.Description != null) existing.Description = request.Description;
+            if (request.Location != null) existing.Location = request.Location;
+            if (request.Developer != null) existing.Developer = request.Developer;
+
             existing.UpdatedAt = DateTime.Now;
 
             var updatedEntity = await _projectRepository.UpdateProjectAsync(existing);
-
             return MapToDto(updatedEntity);
         }
         public async Task<bool> DeleteProjectAsync(Guid projectId)
@@ -99,8 +83,10 @@ namespace Common_BLL.Services
 
         public async Task<bool> DeleteMultipleProjectsAsync(List<Guid> projectIds)
         {
+            if (projectIds == null || !projectIds.Any()) return false;
             return await _projectRepository.DeleteProjectAsync(projectIds);
         }
+
         private ProjectResponseDto MapToDto(Project entity)
         {
             return new ProjectResponseDto
@@ -114,6 +100,5 @@ namespace Common_BLL.Services
                 UpdatedAt = entity.UpdatedAt?.ToString("dd/MM/yyyy HH:mm")
             };
         }
-
     }
 }
