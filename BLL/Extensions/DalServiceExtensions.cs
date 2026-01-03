@@ -22,6 +22,8 @@ namespace Common_BLL.Extensions
             services.AddScoped<IPropertyTypeRepository, PropertyTypeRepository>();
             services.AddScoped<IAreaRepository, AreaRepository>();
             services.AddScoped<INewsRepository, NewsRepository>();
+            services.AddScoped<ICommentsRepository, CommentsRepository>();
+
 
 
             return services;
