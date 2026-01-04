@@ -23,6 +23,7 @@ namespace Common_BLL.Extensions
             services.AddScoped<IAreaRepository, AreaRepository>();
             services.AddScoped<INewsRepository, NewsRepository>();
             services.AddScoped<ICommentsRepository, CommentsRepository>();
+            services.AddScoped<IConversationsRepository, ConversationsRepository>();
 
 
 

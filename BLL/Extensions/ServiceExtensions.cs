@@ -23,6 +23,7 @@ namespace Common_BLL.Extensions
             services.AddScoped<IAreaService, AreaService>();
             services.AddScoped<INewsService, NewsService>();
             services.AddScoped<ICommentsService, CommentsService>();
+            services.AddScoped<IConversationsService, ConversationsService>();
 
             // Đăng ký AutoMapper
             services.AddAutoMapper(cfg =>
