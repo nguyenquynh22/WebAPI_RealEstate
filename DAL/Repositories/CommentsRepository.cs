@@ -21,22 +21,31 @@ namespace Common_DAL.Repositories
 
         public async Task<Guid> CreateAsync(CommentsCreateRequestDto dto)
         {
-            // ⚠️ Bạn cần map đúng tên cột theo bảng Comments của bạn.
-            // Mặc định mình dùng: CommentId, UserId, NewsId, ListingId, ParentId, Content, CreatedAt, UpdatedAt
+            //  VALIDATE đúng constraint CHK_Comment_OneTarget trong SQL:
+            // (NewsId is null) + (ListingId is null) = 1  => chỉ được chọn 1 target
+            bool hasNews = dto.NewsId != Guid.Empty;
+            bool hasListing = dto.ListingId != Guid.Empty;
+
+            if (hasNews == hasListing) // cả 2 true hoặc cả 2 false
+            {
+                throw new Exception("Comment phải thuộc News HOẶC Listing (chỉ 1 trong 2).");
+            }
+
+            // SQL của bạn: CreatedAt có DEFAULT rồi => không cần truyền CreatedAt
             string sql = @"
 INSERT INTO dbo.Comments
-(UserId, NewsId, ListingId, ParentId, Content, CreatedAt)
+(NewsId, ListingId, UserId, Content, ParentId)
 OUTPUT INSERTED.CommentId
 VALUES
-(@UserId, @NewsId, @ListingId, @ParentId, @Content, SYSUTCDATETIME());
+(@NewsId, @ListingId, @UserId, @Content, @ParentId);
 ";
 
             object idObj = await _sqlHelper.ExecuteScalarAsync(sql, CommandType.Text,
-                new SqlParameter("@UserId", dto.UserId),
                 new SqlParameter("@NewsId", DbGuid(dto.NewsId)),
                 new SqlParameter("@ListingId", DbGuid(dto.ListingId)),
-                new SqlParameter("@ParentId", DbGuid(dto.ParentId)),
-                new SqlParameter("@Content", dto.Content)
+                new SqlParameter("@UserId", dto.UserId),
+                new SqlParameter("@Content", dto.Content),
+                new SqlParameter("@ParentId", DbGuid(dto.ParentId))
             );
 
             return (Guid)idObj;
@@ -44,8 +53,9 @@ VALUES
 
         public async Task<CommentsResponseDto> GetByIdAsync(Guid commentId)
         {
+            // thêm LikesCount theo SQL
             string sql = @"
-SELECT CommentId, UserId, NewsId, ListingId, ParentId, Content, CreatedAt, UpdatedAt
+SELECT CommentId, NewsId, ListingId, UserId, Content, ParentId, LikesCount, CreatedAt, UpdatedAt
 FROM dbo.Comments
 WHERE CommentId = @Id;
 ";
@@ -88,8 +98,9 @@ WHERE CommentId = @Id;
             int pageSize = filter.PageSize <= 0 ? 10 : filter.PageSize;
             int offset = (page - 1) * pageSize;
 
+            //  thêm LikesCount theo SQL
             string sqlItems = @"
-SELECT CommentId, UserId, NewsId, ListingId, ParentId, Content, CreatedAt, UpdatedAt
+SELECT CommentId, NewsId, ListingId, UserId, Content, ParentId, LikesCount, CreatedAt, UpdatedAt
 FROM dbo.Comments
 WHERE 1=1
   AND (@NewsId IS NULL OR NewsId = @NewsId)
@@ -133,11 +144,12 @@ WHERE 1=1
             return new CommentsResponseDto
             {
                 CommentId = r.GetGuid(r.GetOrdinal("CommentId")),
-                UserId = r.GetGuid(r.GetOrdinal("UserId")),
                 NewsId = r.IsDBNull(r.GetOrdinal("NewsId")) ? Guid.Empty : r.GetGuid(r.GetOrdinal("NewsId")),
                 ListingId = r.IsDBNull(r.GetOrdinal("ListingId")) ? Guid.Empty : r.GetGuid(r.GetOrdinal("ListingId")),
-                ParentId = r.IsDBNull(r.GetOrdinal("ParentId")) ? Guid.Empty : r.GetGuid(r.GetOrdinal("ParentId")),
+                UserId = r.GetGuid(r.GetOrdinal("UserId")),
                 Content = r.GetString(r.GetOrdinal("Content")),
+                ParentId = r.IsDBNull(r.GetOrdinal("ParentId")) ? Guid.Empty : r.GetGuid(r.GetOrdinal("ParentId")),
+                LikesCount = r.IsDBNull(r.GetOrdinal("LikesCount")) ? 0 : r.GetInt32(r.GetOrdinal("LikesCount")),
                 CreatedAt = r.GetDateTime(r.GetOrdinal("CreatedAt")),
                 UpdatedAt = r.IsDBNull(r.GetOrdinal("UpdatedAt")) ? DateTime.MinValue : r.GetDateTime(r.GetOrdinal("UpdatedAt")),
             };
