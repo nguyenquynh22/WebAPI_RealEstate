@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace UserApi.Controllers
 {
     [Authorize]
-    [Route("api/[Controller]")]
+    [Route("api/public/users")]
     [ApiController]
     public class UsersController : ControllerBase
     {

@@ -13,7 +13,8 @@ namespace Common_DAL.Interfaces
         Task<ProjectAreas?> GetAreaByIdAsync(Guid areaId);
         Task<ProjectAreas> CreateAreaAsync(ProjectAreas area);
         Task<ProjectAreas> UpdateAreaAsync(ProjectAreas area);
-        Task<bool> DeleteAreaAsync(Guid areaId);
+        Task<bool> DeleteAreaAsync(Guid areaId); 
+        Task<bool> AssignPropertyTypesToAreaAsync(Guid areaId, List<int> propertyTypeIds);
 
     }
 }

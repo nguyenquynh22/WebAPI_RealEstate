@@ -52,7 +52,7 @@ app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.UseApiKeyMiddleware();
+//app.UseApiKeyMiddleware();
 
 app.MapControllers();
 app.Run();

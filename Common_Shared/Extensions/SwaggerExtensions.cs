@@ -1,7 +1,7 @@
-﻿using Microsoft.Extensions.DependencyInjection; // Thêm cái này
+﻿using Microsoft.Extensions.DependencyInjection; 
 using Microsoft.OpenApi.Models;
 
-namespace Common_Shared.Extensions // Cập nhật Namespace
+namespace Common_Shared.Extensions 
 {
     public static class SwaggerExtensions
     {
@@ -11,7 +11,6 @@ namespace Common_Shared.Extensions // Cập nhật Namespace
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = apiTitle, Version = "v1" });
 
-                // 1. JWT Bearer Definition
                 c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
                     Description = "JWT Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\"",
@@ -21,35 +20,18 @@ namespace Common_Shared.Extensions // Cập nhật Namespace
                     Scheme = "Bearer"
                 });
 
-                // 2. API Key Definition
-                c.AddSecurityDefinition("ApiKey", new OpenApiSecurityScheme
-                {
-                    Description = "API Key required for accessing secure endpoints (e.g., X-API-KEY)",
-                    Name = "X-API-KEY",
-                    In = ParameterLocation.Header,
-                    Type = SecuritySchemeType.ApiKey
-                });
-
                 c.AddSecurityRequirement(new OpenApiSecurityRequirement()
+        {
+            {
+                new OpenApiSecurityScheme
                 {
-                    {
-                        new OpenApiSecurityScheme
-                        {
-                            Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "Bearer" },
-                            Scheme = "oauth2", Name = "Bearer", In = ParameterLocation.Header,
-                        },
-                        new List<string>()
-                    },
-                    {
-                        new OpenApiSecurityScheme
-                        {
-                            Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "ApiKey" },
-                        },
-                        new List<string>()
-                    }
-                });
+                    Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "Bearer" },
+                    Scheme = "oauth2", Name = "Bearer", In = ParameterLocation.Header,
+                },
+                new List<string>()
+            }
+        });
             });
-
             return services;
         }
     }

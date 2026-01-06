@@ -1,5 +1,5 @@
 ﻿using Common_BLL.Interfaces;
-using Common_DTOs.DTOs; 
+using Common_DTOs.DTOs;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -12,18 +12,26 @@ namespace Common_BLL.Services
     {
         private readonly string _secret;
         private readonly int _expiryMinutes;
+        private readonly string _issuer;
+        private readonly string _audience;
 
         public TokenService(IConfiguration configuration)
         {
             _secret = configuration["JwtSettings:Secret"]
                 ?? throw new InvalidOperationException("JwtSettings:Secret not configured.");
+
+            _issuer = configuration["JwtSettings:Issuer"]
+                ?? "RealEstateApi";
+
+            _audience = configuration["JwtSettings:Audience"]
+                ?? "RealEstateClients";
+
             if (!int.TryParse(configuration["JwtSettings:ExpiryMinutes"], out _expiryMinutes))
             {
                 _expiryMinutes = 60;
             }
         }
 
-        // Sửa tham số truyền vào thành UserResponseDto
         public string CreateToken(UserResponseDto user)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
@@ -40,6 +48,8 @@ namespace Common_BLL.Services
             {
                 Subject = new ClaimsIdentity(claims),
                 Expires = DateTime.UtcNow.AddMinutes(_expiryMinutes),
+                Issuer = _issuer,   
+                Audience = _audience, 
                 SigningCredentials = new SigningCredentials(
                     new SymmetricSecurityKey(key),
                     SecurityAlgorithms.HmacSha256Signature

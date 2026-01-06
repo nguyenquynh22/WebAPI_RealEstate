@@ -84,5 +84,9 @@ namespace Common_BLL.Services
         {
             return await _areaRepository.DeleteAreaAsync(areaId);
         }
+        public async Task<bool> AssignPropertyTypesToAreaAsync(Guid areaId, List<int> propertyTypeIds)
+        {
+            return await _areaRepository.AssignPropertyTypesToAreaAsync(areaId, propertyTypeIds);
+        }
     }
 }

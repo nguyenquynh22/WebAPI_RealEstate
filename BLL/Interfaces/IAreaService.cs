@@ -15,5 +15,6 @@ namespace Common_BLL.Interfaces
         Task<AreaResponseDto> CreateAreaAsync(AreaCreateRequestDto request);
         Task<AreaResponseDto> UpdateAreaAsync(AreaUpdateRequestDto request);
         Task<bool> DeleteAreaAsync(Guid areaId);
+        Task<bool> AssignPropertyTypesToAreaAsync(Guid areaId, List<int> propertyTypeIds);
     }
 }

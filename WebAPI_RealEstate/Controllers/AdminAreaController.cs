@@ -73,5 +73,23 @@ namespace AdminApi.Controllers
 
             return NoContent();
         }
+        [HttpPost("{id}/assign-types")]
+        public async Task<IActionResult> AssignTypes(Guid id, [FromBody] List<int> propertyTypeIds)
+        {
+            if (propertyTypeIds == null || !propertyTypeIds.Any())
+                return BadRequest(new { message = "Danh sách ID loại hình không được trống" });
+
+            try
+            {
+                var result = await _areaService.AssignPropertyTypesToAreaAsync(id, propertyTypeIds);
+                if (result) return Ok(new { message = "Gán loại hình thành công" });
+
+                return StatusCode(500, "Lỗi khi lưu dữ liệu liên kết");
+            }
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(new { message = ex.Message });
+            }
+        }
     }
 }
